@@ -6,10 +6,12 @@
 package com.qiaofangyun.marketing.dto;
 
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
 
+@Data
 public class PropertyVideoInfoDTO implements Serializable {
     private static final long serialVersionUID = 1L;
     @ApiModelProperty("内部公司 UUID")
