@@ -1,5 +1,6 @@
 package com.qiaofangyun.marketing.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
@@ -24,18 +25,14 @@ public class PullResourceUuidListResponse extends CommonResponse {
     public static class PullResourceUuidListResponseDTO {
 
 
+        private Long scrollId;
+
         private Integer listSize;
 
         private List<ResourceUuidDTO> list;
 
         @Data
         public static class ResourceUuidDTO {
-            /**
-             * 资源唯一排序ID  不序列化
-             */
-            @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-            private Long resourceId;
-
             /**
              * 资源唯一Uuid
              */
@@ -49,6 +46,7 @@ public class PullResourceUuidListResponse extends CommonResponse {
             /**
              * 资源更新时间
              */
+            @JsonFormat(pattern =  "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
             private Date resourceUpdatedTime;
         }
 
