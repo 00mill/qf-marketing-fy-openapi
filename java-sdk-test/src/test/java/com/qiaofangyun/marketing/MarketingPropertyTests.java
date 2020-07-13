@@ -2,8 +2,8 @@ package com.qiaofangyun.marketing;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
-import com.qiaofangyun.marketing.dto.PropertyVrInfoDTO;
-import com.qiaofangyun.marketing.dto.PropertyVrPhotoDTO;
+import com.qiaofangyun.marketing.dto.PropertyBaseDTO;
+import com.qiaofangyun.marketing.dto.PropertyVideoInfoDTO;
 import com.qiaofangyun.marketing.feignclient.OnlineMaketingFeign;
 import com.qiaofangyun.marketing.feignclient.TestMaketingFeign;
 import com.qiaofangyun.marketing.request.ListValidResourceByUuidsRequest;
@@ -21,7 +21,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
-public class MarketingVRTests {
+public class MarketingPropertyTests {
 
     @Autowired
     public TestMaketingFeign testMaketingFeign;
@@ -36,7 +36,7 @@ public class MarketingVRTests {
         dto.setUseAsc(true);
         dto.setWindowSize(10);
         pullResourceUuidListRequest.setDto(dto);
-        pullResourceUuidListRequest.setResourceType(ResourceTypeEnum.PROPERTY_VR_INFO);
+        pullResourceUuidListRequest.setResourceType(ResourceTypeEnum.PROPERTY_BASE);
         System.out.println(JSON.toJSONString(pullResourceUuidListRequest,true));
         PullResourceUuidListResponse appid_v20_docking_marketing = testMaketingFeign.pullResourceUuidList("appid_v20_docking_marketing", "c5888f3e-4ffc-41fd-b323-03888a906edb", pullResourceUuidListRequest);
         System.out.println(JSON.toJSONString(appid_v20_docking_marketing,true));
@@ -44,27 +44,16 @@ public class MarketingVRTests {
 
 
     @Test
-    public void listValidPropertyVrInfoByUuids() {
-        ListValidResourceByUuidsRequest request = new ListValidResourceByUuidsRequest(Lists.newArrayList("71e5de8cfca244919af4161602f380c0","ca58f3bb045b4b88aca11a1cd5562658"
+    public void listValidPropertyBaseByUuids() {
+        ListValidResourceByUuidsRequest request = new ListValidResourceByUuidsRequest(Lists.newArrayList("bca5bcd9-e4fc-4f0f-9a64-20000dd87b0c","14101d6e-e8ab-4641-991f-014c0a0feb67"
                 ));
 
-        ListValidResourceByUuidsResponse<PropertyVrInfoDTO> appid_v20_docking_marketing = testMaketingFeign.listValidPropertyVrInfoByUuids("appid_v20_docking_marketing", "c5888f3e-4ffc-41fd-b323-03888a906edb", request);
+        ListValidResourceByUuidsResponse<PropertyBaseDTO> appid_v20_docking_marketing = testMaketingFeign.listValidPropertyBaseByUuids("appid_v20_docking_marketing", "c5888f3e-4ffc-41fd-b323-03888a906edb", request);
         System.out.println(JSON.toJSONString(request,true));
         System.out.println(JSON.toJSONString(appid_v20_docking_marketing,true));
 
     }
 
 
-
-    @Test
-    public void listValidPropertyVrPhotoByUuids() {
-        ListValidResourceByUuidsRequest request = new ListValidResourceByUuidsRequest(Lists.newArrayList("5e31835b6fa74d8fa3db500ab62f7b3a","264326c89168481690e643be92bf21f9","7b51ee8c785943838e831e84fb096160"
-        ));
-
-        ListValidResourceByUuidsResponse<PropertyVrPhotoDTO> appid_v20_docking_marketing = testMaketingFeign.listValidPropertyVrPhotoByUuids("appid_v20_docking_marketing", "c5888f3e-4ffc-41fd-b323-03888a906edb", request);
-        System.out.println(JSON.toJSONString(request,true));
-        System.out.println(JSON.toJSONString(appid_v20_docking_marketing,true));
-
-    }
 }
 
